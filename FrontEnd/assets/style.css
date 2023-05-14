@@ -186,3 +186,34 @@ footer nav ul {
 	margin: 2em
 }
 
+/* js */
+
+#portfolio ul {
+	gap: 15px;
+	margin:auto;
+	width: 50%;
+	margin-bottom: 50px;
+	
+}
+
+#portfolio button {
+	border : solid 1px #1D6154;
+	border-radius : 25px; 
+	font-weight: 700;
+	font-size: 16px;
+	padding : 9px 20px;
+	color : #1D6154;
+	background-color: white;
+	cursor: pointer;
+}
+
+#portfolio button:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+#portfolio :is(ul,li, button) {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
