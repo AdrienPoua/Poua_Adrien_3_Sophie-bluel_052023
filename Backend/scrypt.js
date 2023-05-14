@@ -1,27 +1,29 @@
 const gallery = document.querySelector('.gallery');
+const works = getWorks();
+const categories = getCategories();
 
 async function getWorks() {
     const response = await fetch('http://localhost:5678/api/works');
     const works = await response.json();
     return works
 }
+
 async function getCategories() {
     const response = await fetch('http://localhost:5678/api/categories');
     const categories = await response.json();
     return categories
 }
 
-async function makeGallery() {
-    const works = await getWorks();
-    for (let i = 0; i < works.length; i++) {
+async function makeGallery(array) {
+    for (let i = 0; i < array.length; i++) {
         const figure = document.createElement('figure');
         const img = document.createElement('img');
         const figcaption = document.createElement('figcaption');
         gallery.appendChild(figure);
         figure.appendChild(img);
         figure.appendChild(figcaption);
-        img.src = works[i].imageUrl;
-        figcaption.innerText = works[i].title;
+        img.src = array[i].imageUrl;
+        figcaption.innerText = array[i].title;
     }
 }
 
@@ -40,9 +42,29 @@ async function makeFilterBtns() {
         const btnFilter = document.createElement('button');
         ulFilter.appendChild(li);
         li.appendChild(btnFilter);
-        btnFilter.innerText = `${categories[i].name}`
+        btnFilter.innerText = `${categories[i].name}`;
+        btnFilter.classList.add('filter__btn');
+        btnFilter.setAttribute('data-id', categories[i].id);
     }
 }
 
-makeGallery();
-makeFilterBtns();
+async function figureFilter(callback) {
+    await makeFilterBtns();
+    const filterBtns = document.querySelectorAll('.filter__btn');
+    filterBtns.forEach((btn) => {
+        btn.addEventListener('click', async () => {
+            const categories = await getCategories();
+            const works = await getWorks();
+            const data = btn.getAttribute('data-id');
+            const newArray = works.filter(works => works.categoryId == data);
+            gallery.innerHTML = '';
+            makeGallery(newArray);
+        });
+    });
+}
+
+(async function init() {
+    const works = await getWorks();
+    makeGallery(works);
+    figureFilter();
+})();
