@@ -47,11 +47,15 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+html {
+	background: #E5E5E5;
+}
 body {
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	position: relative;
 }
 header {
 	display: flex;
@@ -137,34 +141,34 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
+.contact, .log__container {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#contact > * {
+.contact > *, .log__container  > * {
 	text-align: center;
 
 }
-#contact h2{
+.contact h2, .log__container h2{
 	margin-bottom: 20px;
 }
-#contact form {
+.contact form , .log__container form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+.contact label, .log__container label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea {
+.contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -196,7 +200,7 @@ footer nav ul {
 	
 }
 
-#portfolio button {
+button {
 	border : solid 1px #1D6154;
 	border-radius : 25px; 
 	font-weight: 700;
@@ -205,6 +209,12 @@ footer nav ul {
 	color : #1D6154;
 	background-color: white;
 	cursor: pointer;
+}
+
+.btn--inv {
+	color:white;
+	background: #1D6154;
+	margin-block:3rem;
 }
 
 #portfolio button:hover {
@@ -216,4 +226,23 @@ footer nav ul {
 	display:flex;
 	justify-content: center;
 	align-items: center;
+}
+
+a {
+	text-decoration: none;
+	color: #3d3d3d;
+	text-align: center;
+	font-weight: 500;
+}
+
+
+
+.mentions {
+	position:absolute;
+	bottom : 20px;
+	right:100px;
+}
+
+.log__container a {
+	text-decoration: underline;
 }

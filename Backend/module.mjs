@@ -20,6 +20,8 @@ export function makeGallery(array) {
     figure.appendChild(figcaption);
     img.src = array[i].imageUrl;
     figcaption.innerText = array[i].title;
+
+
   }
 }
 export function filter(array) {
@@ -29,7 +31,7 @@ export function filter(array) {
     button.addEventListener('click', () => {
       let newArray = array.filter((e) => e.categoryId == button.dataset.id);
       gallery.innerHTML = '';
-      button.dataset.id == !0 ? makeGallery(newArray) : makeGallery(array)
+      button.dataset.id != 0 ? makeGallery(newArray) : makeGallery(array)
     });
   });
 }
