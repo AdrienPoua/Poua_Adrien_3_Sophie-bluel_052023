@@ -6,7 +6,7 @@ export async function fetchData(data1, data2) {
     let categories = await response2.json();;
     return { works, categories }
   } catch (error) {
-    console.log('fetch fail');
+    console.log(error);
   }
 }
 export function makeGallery(array) {
@@ -20,7 +20,6 @@ export function makeGallery(array) {
     figure.appendChild(figcaption);
     img.src = array[i].imageUrl;
     figcaption.innerText = array[i].title;
-
   }
 }
 export function filter(array) {
@@ -34,36 +33,37 @@ export function filter(array) {
     });
   });
 }
-
 async function getPromise() {
   let inputEmail = document.querySelector('#input__email').value;
   let inputPassword = document.querySelector('#input__password').value;
   let dataLog = {
-      "email": inputEmail,
-      "password": inputPassword
-    };
-    let chargeUtile = JSON.stringify(dataLog);
-    try {
-      let response = await fetch("http://localhost:5678/api/users/login",
-       {
+    "email": inputEmail,
+    "password": inputPassword
+  };
+  let chargeUtile = JSON.stringify(dataLog);
+  try {
+    let response = await fetch("http://localhost:5678/api/users/login",
+      {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: chargeUtile
       });
-      let promise = await response.json();
-      return promise
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-;
-
+    let promise = await response.json();
+    return promise
+  } catch (error) {
+    console.log(error);
+  }
+};
 export async function logIn() {
   let logContainer = document.querySelector('.log__container');
   logContainer.addEventListener('submit', async (e) => {
     e.preventDefault();
     let promise = await getPromise();
     console.log(promise);
+    if('error' in promise) {
+      console.log('erreur champion');
+    } else {
+      console.log('hello chef');
+    }
   });
 }
