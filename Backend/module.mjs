@@ -35,3 +35,30 @@ export function filter(array) {
     });
   });
 }
+
+export async function submit() {
+  let logContainer = document.querySelector('.log__container');
+  logContainer.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    let inputEmail = document.querySelector('#input__email').value;
+    let inputPassword = document.querySelector('#input__password').value;
+    let dataLog = {
+      "email": inputEmail,
+      "password": inputPassword
+    };
+    let chargeUtile = JSON.stringify(dataLog);
+    try {
+      let response = await fetch("http://localhost:5678/api/users/login", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: chargeUtile
+      });
+      let output = await response.json();
+      console.log("hello");
+      return output
+    } catch (error) {
+      console.log('submit fail');
+    }
+  });
+
+};
