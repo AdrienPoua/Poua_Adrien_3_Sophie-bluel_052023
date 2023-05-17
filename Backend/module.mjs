@@ -60,10 +60,10 @@ export async function logIn() {
     e.preventDefault();
     let promise = await getPromise();
     console.log(promise);
-    if('error' in promise) {
-      console.log('erreur champion');
-    } else {
+    if('userId' in promise) {
       console.log('hello chef');
+    } else {
+      console.log('pas bon');
     }
   });
 }
