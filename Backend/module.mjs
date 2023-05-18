@@ -22,17 +22,24 @@ export function makeGallery(array) {
     figcaption.innerText = array[i].title;
   }
 }
+
 export function filter(array) {
-  let buttons = document.querySelectorAll('.btn__filter');
+  let buttons = document.querySelectorAll('[data-id]');
   let gallery = document.querySelector('.gallery');
+
   buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      let newArray = array.filter((e) => e.categoryId == button.dataset.id);
-      gallery.innerHTML = '';
-      button.dataset.id != 0 ? makeGallery(newArray) : makeGallery(array)
+    button.addEventListener('click', (event) => {
+      let newArray = array.filter((item) => item.categoryId == button.dataset.id);
+      if (newArray.length !== array.length) {
+        gallery.innerHTML = '';
+        buttons.forEach((btn) => btn.classList.remove('btn--active'));
+        button.classList.add('btn--active');
+        makeGallery(button.dataset.id != 0 ? newArray : array);
+      }
     });
   });
-}
+};
+
 async function getPromise() {
   let inputEmail = document.querySelector('#input__email').value;
   let inputPassword = document.querySelector('#input__password').value;
@@ -55,15 +62,27 @@ async function getPromise() {
   }
 };
 export async function logIn() {
+  let indexUrl = './index.html';
+  let errorLog = document.querySelector('.log__error');
   let logContainer = document.querySelector('.log__container');
   logContainer.addEventListener('submit', async (e) => {
     e.preventDefault();
     let promise = await getPromise();
-    console.log(promise);
-    if('userId' in promise) {
-      console.log('hello chef');
+    if ('userId' in promise) {
+      sessionStorage.setItem('token', promise.token);
+      window.location.href = indexUrl;
     } else {
-      console.log('pas bon');
+      errorLog.classList.remove('invisible')
+        ;
     }
   });
+}
+
+export function adminMode() {
+  let token = sessionStorage.getItem('token');
+  if (token != null) {
+    let admin__bar = document.querySelector('.admin__bar');
+    admin__bar.classList.add('visible');
+  }
+
 }

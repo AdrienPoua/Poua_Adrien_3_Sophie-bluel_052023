@@ -1,255 +1,206 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+:is(*, ::after, ::before) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-/** end reset css**/
 html {
-	background: #E5E5E5;
+  background: #E5E5E5;
 }
+
 body {
-	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
-	position: relative;
+  max-width: 1140px;
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
+  position: relative;
 }
+
 header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
 }
-section {
-	margin: 50px 0
-}
-
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
+header a {
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  font-weight: 500;
 }
 
-h1 > span {
-	font-family: 'Work Sans';
-	font-size:10px;
-	letter-spacing: 0.1em;
-;
-}
-
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154
-}
 nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-
+  display: flex;
+  align-items: center;
+  list-style-type: none;
 }
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
+  padding: 0 10px;
+  font-size: 1.2em;
+}
+nav:hover {
+  color: #B1663C;
 }
 
-li:hover {
-	color: #B1663C;
-}
-#introduction {
-	display: flex;
-	align-items: center;
-}
-#introduction figure {
-	flex: 1
-}
-#introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
+footer ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
 }
 
-#introduction article {
-	flex: 1
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #B1663C;
 }
-#introduction h2 {
-	margin-bottom: 1em;
-}
-
-#introduction p {
-	margin-bottom: 0.5em;
-}
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+h1 span {
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
 }
 
-.gallery img {
-	width: 100%;
-
-}
-.contact, .log__container {
-	width: 50%;
-	margin: auto;
-}
-.contact > *, .log__container  > * {
-	text-align: center;
-
-}
-.contact h2, .log__container h2{
-	margin-bottom: 20px;
-}
-.contact form , .log__container form {
-	text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
-	
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: #1D6154;
 }
 
-input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
-.contact label, .log__container label {
-	margin: 2em 0 1em 0;
+form label {
+  margin: 2em 0 1em 0;
 }
-.contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+form input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
-input[type="submit"]{
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
+form textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-
-footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
-}
-
-/* js */
-
-#portfolio ul {
-	gap: 15px;
-	margin:auto;
-	width: 50%;
-	margin-bottom: 50px;
-	
+form button {
+  width: 180px;
+  color: white;
+  background-color: #1D6154;
+  align-self: center;
+  margin-top: 2.5em;
+  font-size: 14px;
 }
 
 button {
-	border : solid 1px #1D6154;
-	border-radius : 25px; 
-	font-weight: 700;
-	font-size: 16px;
-	padding : 9px 20px;
-	color : #1D6154;
-	background-color: white;
-	cursor: pointer;
+  border: solid 1px #1D6154;
+  font-weight: bold;
+  text-align: center;
+  padding: 9px 20px;
+  border-radius: 25px;
+  cursor: pointer;
 }
 
-.btn--inv {
-	color:white;
-	background: #1D6154;
-	margin-block:3rem;
-	width: 50%;
-	margin-inline: auto;
+section {
+  margin: 50px 0;
 }
 
-#portfolio button:hover {
-	background-color: #1D6154;
-	color: white;
+.introduction {
+  display: flex;
+  align-items: center;
+}
+.introduction figure {
+  flex: 1;
+}
+.introduction img {
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+.introduction article {
+  flex: 1;
+}
+.introduction h2 {
+  margin-bottom: 1em;
+}
+.introduction p {
+  margin-bottom: 0.5em;
 }
 
-#portfolio :is(ul,li, button) {
-	display:flex;
-	justify-content: center;
-	align-items: center;
+.portfolio ul {
+  gap: 15px;
+  margin: auto;
+  width: 50%;
+  margin-bottom: 50px;
+}
+.portfolio h2 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.portfolio :is(ul, li, button) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.portfolio .gallery {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.portfolio .gallery img {
+  width: 100%;
 }
 
-a {
-	text-decoration: none;
-	color: #3d3d3d;
-	text-align: center;
-	font-weight: 500;
+.btn--active {
+  color: white;
+  background: #1D6154;
 }
 
+.btn--secondary {
+  color: white;
+  background: #1D6154;
+}
 
+:is(.contact, .log__container) {
+  width: 50%;
+  margin: auto;
+}
+:is(.contact, .log__container) :is(h2, p) {
+  text-align: center;
+}
 
 .mentions {
-	position:absolute;
-	bottom : 20px;
-	right:100px;
+  position: absolute;
+  bottom: 20px;
+  right: 100px;
 }
 
 .log__container a {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .fw-600 {
-	font-weight: 600;
+  font-weight: 600;
 }
+
+.log__error {
+  display: flex;
+  justify-content: center;
+  color: red;
+  margin-top: 2rem;
+}
+
+.visible {
+  display: block;
+}
+
+.invisible {
+  display: none;
+}/*# sourceMappingURL=style.css.map */

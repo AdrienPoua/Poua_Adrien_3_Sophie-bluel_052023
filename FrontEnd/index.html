@@ -11,22 +11,34 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		integrity="sha384-7f2CYwKSg4AgAPpGOpMv7R2hRkJJlXipnXYTJwziL8R+iHvsVjq00qLEu+/KpHq6" crossorigin="anonymous">
+
 </head>
 
 <body>
+	<div class="admin__bar">
+		<i class="fa-sharp fa-solid fa-pen-to-square admin__bar__fa"></i>
+		<p class="admin__bar__p">mode edition</p>
+		<button class="admin__bar__btn"> Publier les changements </button>
+	</div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 		<nav>
 			<ul>
-				<li>projets</li>
+				<a href="./index.html">
+					<li>projets</li>
+				</a>
 				<li>contact</li>
-				<li>login</li>
+				<a href="./log.html">
+					<li>login</li>
+				</a>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
 	</header>
 	<main>
-		<section id="introduction">
+		<section class="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
 			</figure>
@@ -41,18 +53,18 @@
 					décorateur(trice)</p>
 			</article>
 		</section>
-		<section id="portfolio">
+		<section class="portfolio">
 			<h2>Mes Projets</h2>
 			<ul>
-				<li class="btn__filter" data-id='0' ><button>Tous</button></li>
-				<li class="btn__filter" data-id='1'><button>Objets</button></li>
-				<li class="btn__filter" data-id='2'><button>Appartements</button></li>
-				<li class="btn__filter" data-id='3'><button>Hôtels & restaurants</button></li>
+				<li><button class="btn--active" data-id='0'>Tous</button></li>
+				<li><button data-id='1'>Objets</button></li>
+				<li><button data-id='2'>Appartements</button></li>
+				<li><button data-id='3'>Hôtels & restaurants</button></li>
 			</ul>
 			<div class="gallery">
 			</div>
 		</section>
-		<section class ="contact">
+		<section class="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
 			<form action="#" method="post">
@@ -62,7 +74,7 @@
 				<input type="email" name="email" id="email">
 				<label for="message">Message</label>
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input type="submit" value="Envoyer">
+				<button type="submit" class="btn--inv"> Envoyer </button>
 			</form>
 		</section>
 	</main>
