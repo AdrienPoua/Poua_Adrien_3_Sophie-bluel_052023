@@ -74,6 +74,21 @@ footer ul {
 section {
   margin: 50px 0;
 }
+section section :is(ul, li button) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section ul {
+  gap: 15px;
+  margin: auto;
+  width: 50%;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
 
 h1 {
   display: flex;
@@ -126,7 +141,6 @@ figure {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
 }
 figure span {
@@ -175,17 +189,6 @@ p {
 }
 .portfolio__gallery img {
   width: 100%;
-}
-.portfolio ul {
-  gap: 15px;
-  margin: auto;
-  width: 50%;
-  margin-bottom: 50px;
-}
-.portfolio :is(ul, li, button) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .btn {

@@ -87,6 +87,23 @@ footer {
 
 section {
     margin: 50px 0;
+    section :is(ul,li button) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    ul {
+        gap: 15px;
+        margin: auto;
+        width: 50%;
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+    }
 }
 
 h1 {
@@ -146,7 +163,6 @@ figure {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: relative;
 
     span {
@@ -208,20 +224,9 @@ p {
         }
     }
 
-    ul {
-        gap: 15px;
-        margin: auto;
-        width: 50%;
-        margin-bottom: 50px;
     }
 
-    :is(ul, li, button) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-}
 
 .btn {
     border: solid 1px $primary-color;

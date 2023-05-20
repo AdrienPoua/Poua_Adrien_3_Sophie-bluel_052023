@@ -89,7 +89,7 @@ function visibility() {
   let logout = document.querySelector('.nav__login');
   let header = document.querySelector('header')
   header.style.marginTop = '6em';
-  let btnGallery = document.querySelector('.portfolio ul')
+  let btnGallery = document.querySelector('main .portfolio ul');
   logout.innerText = 'logout';
   btnGallery.classList.add('hidden')
   hidden.forEach(element => element.classList.toggle('hidden'));
