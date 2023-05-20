@@ -31,6 +31,9 @@ body {
   gap: 15px;
   padding-block: 0.5rem;
 }
+.adminBar p {
+  margin-block: auto;
+}
 
 header {
   display: flex;
@@ -118,14 +121,15 @@ form textarea {
   display: flex;
   align-items: center;
 }
-.introduction figure {
+
+figure {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
 }
-.introduction figure span {
+figure span {
   display: flex;
   align-self: flex-start;
   gap: 1em;
