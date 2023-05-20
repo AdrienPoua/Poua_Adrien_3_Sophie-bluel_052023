@@ -136,6 +136,22 @@ form {
     .introduction {
         display: flex;
         align-items: center;
+        figure {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+    
+            span {
+                display: flex;
+                align-self: flex-start;
+                gap: 1em;
+                margin-top: 0.5em;
+                margin-left: 10%;
+                cursor: pointer;
+            }
+        }
     }
 
     img {
@@ -152,22 +168,7 @@ form {
         margin-bottom: 0.5em;
     }
 
-    figure {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
 
-        span {
-            display: flex;
-            align-self: flex-start;
-            gap: 1em;
-            margin-top: 0.5em;
-            margin-left: 10%;
-            cursor: pointer;
-        }
-    }
 
     .portfolio {
         &__title {
