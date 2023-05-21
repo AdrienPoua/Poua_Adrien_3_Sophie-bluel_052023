@@ -34,8 +34,9 @@ body {
     align-items: center;
     gap: 15px;
     padding-block: 0.5rem;
+
     p {
-        margin-block:auto;
+        margin-block: auto;
     }
 }
 
@@ -87,7 +88,8 @@ footer {
 
 section {
     margin: 50px 0;
-    section :is(ul,li button) {
+
+    section :is(ul, li button) {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -190,8 +192,6 @@ p {
     margin-bottom: 0.5em;
 }
 
-
-
 .portfolio {
     &__title {
         display: grid;
@@ -224,9 +224,7 @@ p {
         }
     }
 
-    }
-
-
+}
 
 .btn {
     border: solid 1px $primary-color;
@@ -269,10 +267,6 @@ p {
 }
 
 
-.hidden {
-    display: none;
-}
-
 .log {
     a {
         color: #3D3D3D;
@@ -298,9 +292,7 @@ p {
 //////// ADMIN MODE //////
 
 
-.hidden {
-    display: none;
-}
+
 
 .fa-pen-to-square {
     width: 15px;
@@ -312,35 +304,68 @@ main .fa-pen-to-square {
     color: black
 }
 
-#myModal {
-    position: fixed;
-    display: none;
+.myModal {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    gap:1rem;
     width: 50%;
-    margin: auto auto;
+    z-index: 99999;
+    margin-inline: auto ;
     padding: 3rem;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
-    &__title {
-        text-align: center;
-    }
-
-    &__close {
+    &__cross {
         align-self: flex-end;
-        width: 10px;
+        cursor: pointer;
+        font-size: 2rem;
+    }
+    &__title {
+        margin-block:1rem;
     }
 
     &__content {
-        border-bottom: solid 1px $primary-color;
+        display:grid;
+        gap:1rem;
+        grid : auto / repeat(5,1fr);
+        img{
+            width: 100%;
+        }
+            
+        figcaption{
+            font-family: Work Sans;
+            font-size: 12px;
+            font-weight: 400;
+            margin-top:5px;
+            cursor: pointer;
+            i {
+                content: "";
+                position: absolute;
+                background : black;
+                color:white;
+                font-size: 1.5rem;
+                padding : 5px;
+                border-radius: 5px;
+                top:10px;
+                right:10px;
+            }
+        }
+        
     }
 
-    .invisible {
-        display: none
+    &__submit {
+        color:white;
     }
-
-    #cross {
-        color: black;
+    &__delete {
+       background: none;
     }
+}
+.hidden {
+    display: none;
+}
+.hide {
+    display:none
 }

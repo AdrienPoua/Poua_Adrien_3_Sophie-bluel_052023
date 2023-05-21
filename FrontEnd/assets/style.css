@@ -229,10 +229,6 @@ p {
   padding-bottom: 1rem;
 }
 
-.hidden {
-  display: none;
-}
-
 .log a {
   color: #3D3D3D;
   font-weight: 500;
@@ -251,10 +247,6 @@ p {
   bottom: 20px;
 }
 
-.hidden {
-  display: none;
-}
-
 .fa-pen-to-square {
   width: 15px;
   height: 15px;
@@ -265,30 +257,66 @@ main .fa-pen-to-square {
   color: black;
 }
 
-#myModal {
-  position: fixed;
-  display: none;
+.myModal {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  gap: 1rem;
   width: 50%;
-  margin: auto auto;
+  z-index: 99999;
+  margin-inline: auto;
   padding: 3rem;
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-#myModal__title {
-  text-align: center;
-}
-#myModal__close {
+.myModal__cross {
   align-self: flex-end;
-  width: 10px;
+  cursor: pointer;
+  font-size: 2rem;
 }
-#myModal__content {
-  border-bottom: solid 1px #1D6154;
+.myModal__title {
+  margin-block: 1rem;
 }
-#myModal .invisible {
+.myModal__content {
+  display: grid;
+  gap: 1rem;
+  grid: auto/repeat(5, 1fr);
+}
+.myModal__content img {
+  width: 100%;
+}
+.myModal__content figcaption {
+  font-family: Work Sans;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.myModal__content figcaption i {
+  content: "";
+  position: absolute;
+  background: black;
+  color: white;
+  font-size: 1.5rem;
+  padding: 5px;
+  border-radius: 5px;
+  top: 10px;
+  right: 10px;
+}
+.myModal__submit {
+  color: white;
+}
+.myModal__delete {
+  background: none;
+}
+
+.hidden {
   display: none;
 }
-#myModal #cross {
-  color: black;
+
+.hide {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

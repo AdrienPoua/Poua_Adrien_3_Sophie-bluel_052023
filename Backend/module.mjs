@@ -75,12 +75,22 @@ export async function logIn() {
     }
   });
 }
-export function adminMode() {
+export async function adminMode() {
   let token = sessionStorage.getItem('token');
+  const response = await fetch(`http://localhost:5678/api/works`);
+  let data = await response.json()
+ 
+  // Pour une raison obscure je ne peux pas utiliser les data que j'ai fetch plus tot dans le scope de cette fonction donc je fetch a nouveau. si je console.log(data) avant l'appel de la fonction data est defini, mais pas a l'interieur. J'ai essayer avec let/var/const
   if (token != null) {
+    console.log('Visibility va etre lancé');
     visibility();
-    adminListener()
+    console.log('Visibility a été lancé, makeModalGallery vas etre lancé');
+    makeModalGallery(data);
+    console.log('makeModalGallery a été lancé, administener va etre lancé');
+    
+    adminListener();
 
+    console.log('admin mode fullfil')
   }
 }
 
@@ -98,13 +108,58 @@ function visibility() {
 
 function adminListener() {
   let logout = document.querySelector('.nav__login');
-  let btnModifier = document.querySelectorAll('span .hidden')
-  let myModal = document.querySelector('#myModal')
-  let myModalCloseBtn = document.querySelector('#modal__close')
-  logout.addEventListener('click', () => sessionStorage.clear());
-  btnModifier.addEventListener('click', () => myModal.show())
-  myModalCloseBtn.addEventListener('click', () => myModal.close())
+  let btnModifier = document.querySelectorAll('span:has(i)');
+  let myModal = document.querySelector('.myModal')
+  let myModalCloseBtn = document.querySelector('.myModal__cross')
+  let trash = document.querySelectorAll('.fa-trash-can')
+
+  logout.addEventListener('click', () => { sessionStorage.clear() });
+  btnModifier.forEach(btn => btn.addEventListener('click', () => myModal.classList.toggle('hide')));
+  myModalCloseBtn.addEventListener('click', () => myModal.classList.toggle("hide"));
+  console.log(trash);
+  
+  trash.forEach((ben) => {
+    ben.addEventListener('click', (e) => {
+      
+      let id = e.target.dataset.id;
+      console.log(id);
+      deleteWork(id);
+    });
+  });
+  
+}
+
+  function deleteWork(id) {
+    event.preventDefault();
+    let token = sessionStorage.getItem('token');
+    console.log(token);
+    fetch(`http://localhost:5678/api/works/${id}`,
+      {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
   }
 
-
+  function makeModalGallery(array) {
+    const gallery = document.querySelector('.myModal__content');
+    for (let i = 0; i < array.length; i++) {
+      const figure = document.createElement('figure');
+      const img = document.createElement('img');
+      const figcaption = document.createElement('figcaption');
+      const icone = document.createElement('i');
+      gallery.appendChild(figure);
+      figure.appendChild(img);
+      figure.appendChild(figcaption);
+      figcaption.appendChild(document.createTextNode(`éditer`));
+      figcaption.appendChild(icone)
+      img.src = array[i].imageUrl;
+      icone.setAttribute('data-id', array[i].id)
+      console.log(array)
+      icone.classList.add('fa-solid', 'fa-trash-can')
+    }
+  }
 
