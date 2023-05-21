@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<title>Sophie Bluel - Architecte d'intérieur</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+		rel="stylesheet">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./assets/style.css">
 </head>
 
 <body>
@@ -14,29 +18,34 @@
         <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
         <nav>
             <ul>
-                <li>projets</li>
-                <li>contact</li>
-                <li class="fw-600">login</li>
-                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-            </ul>
+				<a href="./index.html">
+					<li>projets</li>
+				</a>
+				<li>contact</li>
+				<a href="./log.html">
+					<li>login</li>
+				</a>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			</ul>
         </nav>
     </header>
     <main>
-        <div class="log__container">
+        <div class="log">
             <h2>log in</h2>
             <form action="">
                 <label for="email" id="email">E-mail</label>
                 <input type="email" name="email" id="input__email">
                 <label for="mot de passe" id="password"> Mot de passe</label>
                 <input type="password" name="password" id="input__password">
-                <button class="btn--inv">Se connecter</button>
-                <a href=""> Mot de passe oublié ?</a>
+                <span class="log__error hidden"> Identifiants incorrects. Veuillez réessayer.</span>
+                <button class="btn btn--form">Se connecter</button>
+                <a href="" class="mdp"> Mot de passe oublié ?</a>
         </div>
         </form>
         <footer>
             <nav>
                 <ul>
-                    <li>Mentions Légales</li>
+                    <li class="mentions">Mentions Légales</li>
                 </ul>
             </nav>
         </footer>

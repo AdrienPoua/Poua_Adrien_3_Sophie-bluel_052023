@@ -1,0 +1,371 @@
+$primary-color : #1D6154;
+;
+$secondary-color : white;
+
+:is(*, ::after, ::before) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: #E5E5E5;
+    position: relative;
+    height: 100%;
+}
+
+body {
+    max-width: 1140px;
+    margin: auto;
+    font-family: "Work Sans";
+    font-size: 14px;
+}
+
+.adminBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding-block: 0.5rem;
+
+    p {
+        margin-block: auto;
+    }
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+
+    nav {
+        display: flex;
+
+        ul {
+            display: flex;
+            align-items: center;
+            list-style-type: none;
+        }
+
+        li {
+            padding: 0 10px;
+            font-size: 1.2em;
+        }
+
+        &:hover {
+            color: #B1663C;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    &.admin {
+        margin-top: 6rem;
+    }
+
+
+}
+
+footer {
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        margin: 2em;
+    }
+}
+
+section {
+    margin: 50px 0;
+
+    section :is(ul, li button) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    ul {
+        gap: 15px;
+        margin: auto;
+        width: 50%;
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+    }
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Syne';
+    font-size: 22px;
+    font-weight: 800;
+    color: #B1663C;
+
+    span {
+        font-family: 'Work Sans';
+        font-size: 10px;
+        letter-spacing: 0.1em;
+    }
+}
+
+h2 {
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 30px;
+    color: $primary-color;
+}
+
+form {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+
+    label {
+        margin: 2em 0 1em 0;
+    }
+
+    input {
+        text-align: center;
+        height: 50px;
+        font-size: 1.2em;
+        border: none;
+        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    }
+
+    textarea {
+        border: none;
+        box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    }
+}
+
+
+.introduction {
+    display: flex;
+    align-items: center;
+
+}
+
+figure {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    span {
+        display: flex;
+        align-self: flex-start;
+        gap: 1em;
+        margin-top: 0.5em;
+        margin-left: 10%;
+        cursor: pointer;
+
+    }
+}
+
+img {
+    display: block;
+    margin: auto;
+    width: 80%;
+}
+
+article {
+    flex: 1;
+}
+
+p {
+    margin-bottom: 0.5em;
+}
+
+.portfolio {
+    &__title {
+        display: grid;
+        grid-template: 1fr /57% auto 1fr;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        h2 {
+            text-align: right;
+        }
+
+        span {
+            grid-column-start: 2;
+            margin-left: 1rem;
+            cursor: pointer;
+
+
+        }
+    }
+
+    &__gallery {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
+
+.btn {
+    border: solid 1px $primary-color;
+    font-weight: bold;
+    text-align: center;
+    padding: 9px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    color: $primary-color;
+    border: solid 1px $primary-color
+}
+
+.btn--form {
+    width: 180px;
+    color: $secondary-color;
+    background-color: $primary-color;
+    align-self: center;
+    margin-top: 2.5em;
+    font-size: 14px;
+}
+
+.btn--active {
+    color: white;
+    background: #1D6154;
+}
+
+:is(.contact, .log) {
+    width: 50%;
+    margin: auto;
+
+    :is(h2, p) {
+        text-align: center;
+    }
+
+}
+
+.mentions {
+    list-style: none;
+    padding-bottom: 1rem;
+}
+
+
+.log {
+    a {
+        color: #3D3D3D;
+        font-weight: 500;
+        text-decoration: underline;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    &__error {
+        display: flex;
+        justify-content: center;
+        color: red;
+        margin-top: 2rem;
+    }
+
+    +footer .mentions {
+        position: absolute;
+        bottom: 20px;
+    }
+}
+
+//////// ADMIN MODE //////
+
+
+
+
+.fa-pen-to-square {
+    width: 15px;
+    height: 15px;
+    color: white
+}
+
+main .fa-pen-to-square {
+    color: black
+}
+
+.myModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    gap:1rem;
+    width: 50%;
+    z-index: 99999;
+    margin-inline: auto ;
+    padding: 3rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    &__cross {
+        align-self: flex-end;
+        cursor: pointer;
+        font-size: 2rem;
+    }
+    &__title {
+        margin-block:1rem;
+    }
+
+    &__content {
+        display:grid;
+        gap:1rem;
+        grid : auto / repeat(5,1fr);
+        img{
+            width: 100%;
+        }
+            
+        figcaption{
+            font-family: Work Sans;
+            font-size: 12px;
+            font-weight: 400;
+            margin-top:5px;
+            cursor: pointer;
+            i {
+                content: "";
+                position: absolute;
+                background : black;
+                color:white;
+                font-size: 1.5rem;
+                padding : 5px;
+                border-radius: 5px;
+                top:10px;
+                right:10px;
+            }
+        }
+        
+    }
+
+    &__submit {
+        color:white;
+    }
+    &__delete {
+       background: none;
+    }
+}
+.hidden {
+    display: none;
+}
+.hide {
+    display:none
+}
