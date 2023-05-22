@@ -77,21 +77,19 @@ export async function logIn() {
 }
 export async function adminMode() {
   let token = sessionStorage.getItem('token');
-  const response = await fetch(`http://localhost:5678/api/works`);
-  let data = await response.json()
- 
+  let response = await fetch(`http://localhost:5678/api/works`);
+  let works = await response.json()
+  response = await fetch(`http://localhost:5678/api/categories`)
+  let categories = await response.json()
+  
+  
+
   // Pour une raison obscure je ne peux pas utiliser les data que j'ai fetch plus tot dans le scope de cette fonction donc je fetch a nouveau. si je console.log(data) avant l'appel de la fonction data est defini, mais pas a l'interieur. J'ai essayer avec let/var/const
   if (token != null) {
-    console.log('Visibility va etre lancé');
     visibility();
-    console.log('Visibility a été lancé, makeModalGallery vas etre lancé');
-    makeModalGallery(data);
-    console.log('makeModalGallery a été lancé, administener va etre lancé');
-    
+    makeModalGallery(works);
     adminListener();
-
-    console.log('admin mode fullfil')
-    modalSwitch()
+    modalSwitch(categories)
   }
 }
 
@@ -117,81 +115,69 @@ function adminListener() {
   logout.addEventListener('click', () => { sessionStorage.clear() });
   btnModifier.forEach(btn => btn.addEventListener('click', () => myModal.classList.toggle('hide')));
   myModalCloseBtn.addEventListener('click', () => myModal.classList.toggle("hide"));
-  console.log(trash);
-  
+
   trash.forEach((ben) => {
     ben.addEventListener('click', (e) => {
-      
+
       let id = e.target.dataset.id;
-      console.log(id);
       deleteWork(id);
     });
   });
-  
-}
-
-function modalSwitch(){
-let myModalAdd = document.querySelector('.myModal__add')
-let hiddens = document.querySelectorAll('.myModal__hidden')
-let h2 = document.querySelector('.myModal__title');
-let figures = document.querySelectorAll('figure');
-let myModalDelete = document.querySelector('.myModal__delete')
-let myModalContent = document.querySelector('.myModal__content')
-let arrow = document.getElementById('arrow');
-let elementToHide = [h2, ...figures, myModalDelete];
-myModalAdd.addEventListener('click', ()=>{
-  console.log(elementToHide);
-  arrow.removeAttribute('id')
-  hiddens.forEach(element => element.classList.toggle('myModal__hidden'))
-  elementToHide.forEach(element => element.classList.toggle('myModal__hidden'))
-  myModalContent.classList.remove('myModal__content')
-  myModalContent.classList.add('myModal__content2')
-  
-
-})
-arrow.addEventListener('click', ()=>{
-arrow.setAttribute('id','arrow');
-elementToHide.forEach(element => element.classList.toggle('myModal__hidden'))
-myModalContent.classList.remove('myModal__content2')
-myModalContent.classList.add('myModal__content')
-hiddens.forEach(element => element.classList.toggle('myModal__hidden'))
-
 
 }
-)
+
+function modalSwitch(categories) {
+  let modals = [];
+  modals.push(document.querySelector('.myModal__first'));
+  modals.push(document.querySelector('.myModal__second'));
+  let myModalAdd = document.querySelector('.myModal__add');
+  let arrow = document.getElementById('arrow');
+  let options = document.querySelectorAll('option')
+  console.log(options);
+  for(let i = 0; i < categories.length; i++) {
+    options[i].innerText = categories[i].name
+  }
+  
+  myModalAdd.addEventListener('click', () => {
+    arrow.removeAttribute('id')
+    modals.forEach(element => element.classList.toggle('myModal__hidden'))
+  })
+  arrow.addEventListener('click', () => {
+    modals.forEach(element => element.classList.toggle('myModal__hidden'))
+    arrow.setAttribute('id', 'arrow');
+  }
+  )
 }
 
 function deleteWork(id) {
-    event.preventDefault();
-    let token = sessionStorage.getItem('token');
-    console.log(token);
-    fetch(`http://localhost:5678/api/works/${id}`,
-      {
-        method: 'delete',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
+  event.preventDefault();
+  let token = sessionStorage.getItem('token');
+  fetch(`http://localhost:5678/api/works/${id}`,
+    {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
-    )
-  }
+    }
+  )
+}
 
 function makeModalGallery(array) {
-    const gallery = document.querySelector('.myModal__content');
-    for (let i = 0; i < array.length; i++) {
-      const figure = document.createElement('figure');
-      const img = document.createElement('img');
-      const figcaption = document.createElement('figcaption');
-      const icone = document.createElement('i');
-      gallery.appendChild(figure);
-      figure.appendChild(img);
-      figure.appendChild(figcaption);
-      figcaption.appendChild(document.createTextNode(`éditer`));
-      figcaption.appendChild(icone)
-      img.src = array[i].imageUrl;
-      icone.setAttribute('data-id', array[i].id)
-      console.log(array)
-      icone.classList.add('fa-solid', 'fa-trash-can')
-    }
+  const gallery = document.querySelector('.myModal__gallery');
+  for (let i = 0; i < array.length; i++) {
+    const figure = document.createElement('figure');
+    const img = document.createElement('img');
+    const figcaption = document.createElement('figcaption');
+    const icone = document.createElement('i');
+    gallery.appendChild(figure);
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    figcaption.appendChild(document.createTextNode(`éditer`));
+    figcaption.appendChild(icone)
+    img.src = array[i].imageUrl;
+    icone.setAttribute('data-id', array[i].id)
+    icone.classList.add('fa-solid', 'fa-trash-can')
   }
+}
 

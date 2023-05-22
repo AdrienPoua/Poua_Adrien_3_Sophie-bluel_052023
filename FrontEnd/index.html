@@ -60,12 +60,54 @@
 		</section>
 		<section class="portfolio">
 			<dialog class="myModal hide">
-				<i class="fa-solid fa-xmark myModal__cross" ></i>
-				<h2 class="myModal__title">Galerie</h2>
-				<div class="myModal__content"></div>
-				<button class="myModal__submit btn btn--active"> Ajouter une photo</button>
-				<button class="myModal__delete"> Supprimer de la galerie</button>
+
+				<div class="myModal__top">
+					<i class="fa-solid fa-arrow-left myModal__arrow" id="arrow"></i>
+					<i class="fa-solid fa-xmark myModal__cross" ></i>
+				</div>
+				
+				<!-- HERE -->
+				<div class="myModal__first">
+					<h2 class="myModal__title">Galerie photo</h2>
+					<div class="myModal__gallery"></div>
+					<button class="myModal__add btn btn--active"> Ajouter une photo</button>
+					<button class="myModal__delete"> Supprimer de la galerie</button>
+				</div>
+					
+
+
+				<!-- HERE 2  -->
+				
+				
+				<div class="myModal__second myModal__hidden">
+				<h2 class="myModal__title"> Ajout photos </h2>
+
+				<form action="">
+					<div class="custom-file-input">
+							<i class="fa-regular fa-image"></i>
+							<input type="file" id="file-input" />
+							<label for="file-input" class="btn btn--file"> + ajouter une photo </label>
+							<span> jpg, png : 4mo max </span>
+					</div>
+					
+					<label for="inputTitle">Titre:</label>
+					<input type="text" id="inputTitle" name="titre" >
+					<label for="options" >Catégorie</label>
+					<select id="options" name="options" >
+						<option value="option1"></option>
+						<option value="option2"></option>
+						<option value="option3"></option>
+					</select>
+					<div class="border__red">
+					<input type="submit" class="btn btn--active" value="Valider">
+					</div>
+				</form>
+
+
+				</div>
 			  </dialog>
+
+
 			<div class="portfolio__title">
 				<h2>Mes Projets</h2>
 				<span class="hidden"> <i class="fa-regular fa-pen-to-square"></i></i> modifier <span>
