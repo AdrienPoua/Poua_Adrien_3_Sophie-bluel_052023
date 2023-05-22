@@ -91,6 +91,7 @@ export async function adminMode() {
     adminListener();
 
     console.log('admin mode fullfil')
+    modalSwitch()
   }
 }
 
@@ -129,7 +130,38 @@ function adminListener() {
   
 }
 
-  function deleteWork(id) {
+function modalSwitch(){
+let myModalAdd = document.querySelector('.myModal__add')
+let hiddens = document.querySelectorAll('.myModal__hidden')
+let h2 = document.querySelector('.myModal__title');
+let figures = document.querySelectorAll('figure');
+let myModalDelete = document.querySelector('.myModal__delete')
+let myModalContent = document.querySelector('.myModal__content')
+let arrow = document.getElementById('arrow');
+let elementToHide = [h2, ...figures, myModalDelete];
+myModalAdd.addEventListener('click', ()=>{
+  console.log(elementToHide);
+  arrow.removeAttribute('id')
+  hiddens.forEach(element => element.classList.toggle('myModal__hidden'))
+  elementToHide.forEach(element => element.classList.toggle('myModal__hidden'))
+  myModalContent.classList.remove('myModal__content')
+  myModalContent.classList.add('myModal__content2')
+  
+
+})
+arrow.addEventListener('click', ()=>{
+arrow.setAttribute('id','arrow');
+elementToHide.forEach(element => element.classList.toggle('myModal__hidden'))
+myModalContent.classList.remove('myModal__content2')
+myModalContent.classList.add('myModal__content')
+hiddens.forEach(element => element.classList.toggle('myModal__hidden'))
+
+
+}
+)
+}
+
+function deleteWork(id) {
     event.preventDefault();
     let token = sessionStorage.getItem('token');
     console.log(token);
@@ -144,7 +176,7 @@ function adminListener() {
     )
   }
 
-  function makeModalGallery(array) {
+function makeModalGallery(array) {
     const gallery = document.querySelector('.myModal__content');
     for (let i = 0; i < array.length; i++) {
       const figure = document.createElement('figure');
