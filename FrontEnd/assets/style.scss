@@ -307,7 +307,7 @@ p {
     width: 50%;
     z-index: 99999;
     margin-inline: auto;
-    padding: 2%;
+    padding: 3.5%;
     background-color: #f9f9f9;
     border-radius: 5px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -402,7 +402,13 @@ p {
         text-align: center;
     }
 
-
+    #preview {
+        position: absolute;
+        top : 0px;
+        left : 25%;
+        width: 50%;
+        height: 100%
+    }
     input[type="text"],
     select {
         text-align: left;

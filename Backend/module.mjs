@@ -54,6 +54,7 @@ async function getPromise() {
         body: chargeUtile
       });
     let promise = await response.json();
+
     return promise
   } catch (error) {
     console.log(error);
@@ -81,8 +82,8 @@ export async function adminMode() {
   let works = await response.json()
   response = await fetch(`http://localhost:5678/api/categories`)
   let categories = await response.json()
-  
-  
+
+
 
   // Pour une raison obscure je ne peux pas utiliser les data que j'ai fetch plus tot dans le scope de cette fonction donc je fetch a nouveau. si je console.log(data) avant l'appel de la fonction data est defini, mais pas a l'interieur. J'ai essayer avec let/var/const
   if (token != null) {
@@ -111,43 +112,79 @@ function adminListener() {
   let myModal = document.querySelector('.myModal')
   let myModalCloseBtn = document.querySelector('.myModal__cross')
   let trash = document.querySelectorAll('.fa-trash-can')
+  let inputFile = document.querySelector('input[type="file"]');
+  let placeholder = document.getElementById('preview');
 
   logout.addEventListener('click', () => { sessionStorage.clear() });
   btnModifier.forEach(btn => btn.addEventListener('click', () => myModal.classList.toggle('hide')));
   myModalCloseBtn.addEventListener('click', () => myModal.classList.toggle("hide"));
+  inputFile.addEventListener('change', function (e) {
+    let img = e.target.files[0];
+    let imgPrev = URL.createObjectURL(img);
+    placeholder.classList.remove('hide')
+    placeholder.src = imgPrev;
+  })
 
   trash.forEach((ben) => {
     ben.addEventListener('click', (e) => {
-
       let id = e.target.dataset.id;
       deleteWork(id);
     });
   });
+  myModal.addEventListener('submit', function (event) {
+    console.log('submit in');
 
+  })
 }
 
 function modalSwitch(categories) {
+  let myModalCloseBtn = document.querySelector('.myModal__cross')
   let modals = [];
   modals.push(document.querySelector('.myModal__first'));
   modals.push(document.querySelector('.myModal__second'));
   let myModalAdd = document.querySelector('.myModal__add');
   let arrow = document.getElementById('arrow');
+  let form = document.querySelector('.myModal form')
   let options = document.querySelectorAll('option')
-  console.log(options);
-  for(let i = 0; i < categories.length; i++) {
+  for (let i = 0; i < categories.length; i++) {
     options[i].innerText = categories[i].name
   }
-  
   myModalAdd.addEventListener('click', () => {
     arrow.removeAttribute('id')
     modals.forEach(element => element.classList.toggle('myModal__hidden'))
+  })
+  myModalCloseBtn.addEventListener('click', () => {
+    arrow.setAttribute('id', 'arrow')
+    document.querySelector('.myModal__first').classList.remove('myModal__hidden')
+    document.querySelector('.myModal__second').classList.add('myModal__hidden')
   })
   arrow.addEventListener('click', () => {
     modals.forEach(element => element.classList.toggle('myModal__hidden'))
     arrow.setAttribute('id', 'arrow');
   }
   )
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    addWorks()
+  }
+  )
 }
+
+function addWorks() {
+  let form = document.querySelector('.myModal form')
+  let formData = new FormData(form);
+  let token = sessionStorage.getItem('token');
+  fetch(`http://localhost:5678/api/works/`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: formData
+    }
+  )
+}
+
 
 function deleteWork(id) {
   event.preventDefault();
@@ -162,6 +199,7 @@ function deleteWork(id) {
     }
   )
 }
+
 
 function makeModalGallery(array) {
   const gallery = document.querySelector('.myModal__gallery');
