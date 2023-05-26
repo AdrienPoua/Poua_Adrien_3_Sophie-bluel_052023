@@ -211,6 +211,7 @@ export let logFunctions = {
         body: chargeUtile,
       });
       let promise = await response.json();
+      console.log(promise);
       return promise;
     } catch (error) {
       console.log(error);
@@ -223,6 +224,8 @@ export let logFunctions = {
     log.addEventListener("submit", async (e) => {
       e.preventDefault();
       let promise = await logFunctions.getPromise();
+      console.log(promise);
+      
       if ("userId" in promise) {
         sessionStorage.setItem("token", promise.token);
         window.location.href = indexUrl;
