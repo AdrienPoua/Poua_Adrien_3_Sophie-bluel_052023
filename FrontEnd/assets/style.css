@@ -143,14 +143,6 @@ figure {
   flex-direction: column;
   position: relative;
 }
-figure .modif__item {
-  display: flex;
-  align-self: flex-start;
-  gap: 1em;
-  margin-top: 0.5em;
-  margin-left: 10%;
-  cursor: pointer;
-}
 
 img {
   display: block;
@@ -160,6 +152,15 @@ img {
 
 article {
   flex: 1;
+}
+
+.modif__item {
+  display: flex;
+  align-self: flex-start;
+  gap: 1em;
+  margin-top: 0.5em;
+  margin-left: 10%;
+  cursor: pointer;
 }
 
 p {
