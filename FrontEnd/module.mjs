@@ -107,7 +107,7 @@ export let sideFunctions = {
     );
     myModalBg.addEventListener('click', (e)=> {
      myModal.classList.toggle("hide")
-     e.target.classList.toggle('myModal__hidden')})
+    e.target.classList.toggle('myModal__hidden')})
 
     myModalCloseBtn.addEventListener("click", () => {
       myModal.classList.toggle("hide");
@@ -131,9 +131,9 @@ export let sideFunctions = {
     });
     trash.forEach((ben) => {
       ben.addEventListener("click", (e) => {
+        e.preventDefault();
         let id = e.target.dataset.id;
         sideFunctions.deleteWork(id);
-        e.preventDefault();
       });
     });
   },
