@@ -21,6 +21,8 @@ export let mainFunctions = {
       figure.appendChild(figcaption);
       img.src = array[i].imageUrl;
       figcaption.innerText = array[i].title;
+      console.log(array);
+      
     }
   },
   filter: (array) => {
@@ -84,7 +86,7 @@ export let sideFunctions = {
   },
   adminListener: (works) => {
     const logout = document.querySelector(".nav__login");
-    const btnModifier = document.querySelectorAll(".portfolio__title span");
+    const btnModifier = document.querySelectorAll(".portfolio__title .modif__item");
     const myModal = document.querySelector(".myModal");
     const myModalCloseBtn = document.querySelector(".myModal__cross");
     const trash = document.querySelectorAll(".fa-trash-can");
@@ -103,6 +105,10 @@ export let sideFunctions = {
         myModalBg.classList.toggle("myModal__hidden");
       })
     );
+    myModalBg.addEventListener('click', (e)=> {
+     myModal.classList.toggle("hide")
+     e.target.classList.toggle('myModal__hidden')})
+
     myModalCloseBtn.addEventListener("click", () => {
       myModal.classList.toggle("hide");
       myModalBg.classList.toggle("myModal__hidden");
@@ -161,8 +167,9 @@ export let sideFunctions = {
       modals.forEach((element) => element.classList.toggle("myModal__hidden"));
       arrow.setAttribute("id", "arrow");
     }),
-      form.addEventListener("submit", function () {
-        sideFunctions.addWorks();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault()
+      sideFunctions.addWorks();
       });
   },
   addWorks: () => {

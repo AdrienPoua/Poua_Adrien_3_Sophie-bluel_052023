@@ -6,7 +6,7 @@
 }
 
 html {
-  background: #E5E5E5;
+  background: #e5e5e5;
   position: relative;
   height: 100%;
 }
@@ -53,7 +53,7 @@ header nav li {
   font-size: 1.2em;
 }
 header nav:hover {
-  color: #B1663C;
+  color: #b1663c;
 }
 header a {
   text-decoration: none;
@@ -96,7 +96,7 @@ h1 {
   font-family: "Syne";
   font-size: 22px;
   font-weight: 800;
-  color: #B1663C;
+  color: #b1663c;
 }
 h1 span {
   font-family: "Work Sans";
@@ -108,7 +108,7 @@ h2 {
   font-family: "Syne";
   font-weight: 700;
   font-size: 30px;
-  color: #1D6154;
+  color: #1d6154;
 }
 
 form {
@@ -143,7 +143,7 @@ figure {
   flex-direction: column;
   position: relative;
 }
-figure span {
+figure .modif__item {
   display: flex;
   align-self: flex-start;
   gap: 1em;
@@ -175,8 +175,7 @@ p {
 .portfolio__title h2 {
   text-align: right;
 }
-.portfolio__title span {
-  grid-column-start: 2;
+.portfolio .modif__item {
   margin-left: 1rem;
   cursor: pointer;
 }
@@ -193,20 +192,20 @@ p {
 }
 
 .btn {
-  border: solid 1px #1D6154;
+  border: solid 1px #1d6154;
   font-weight: bold;
   text-align: center;
   padding: 9px 20px;
   border-radius: 25px;
   cursor: pointer;
-  color: #1D6154;
-  border: solid 1px #1D6154;
+  color: #1d6154;
+  border: solid 1px #1d6154;
 }
 
 .btn--form {
   width: 180px;
   color: white;
-  background-color: #1D6154;
+  background-color: #1d6154;
   align-self: center;
   margin-top: 2.5em;
   font-size: 14px;
@@ -214,12 +213,12 @@ p {
 
 .btn--active {
   color: white;
-  background: #1D6154;
+  background: #1d6154;
 }
 
 .btn--file {
   width: 50%;
-  background-color: #CBD6DC;
+  background-color: #cbd6dc;
   color: #306685;
   border: none;
   margin-block: 1rem;
@@ -239,7 +238,7 @@ p {
 }
 
 .log a {
-  color: #3D3D3D;
+  color: #3d3d3d;
   font-weight: 500;
   text-decoration: underline;
   text-align: center;
@@ -369,7 +368,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #E8F1F6;
+  background-color: #e8f1f6;
   padding-block: 3rem;
   cursor: pointer;
 }
@@ -403,7 +402,7 @@ p {
   border-top: solid 1px red;
 }
 .myModal__delete {
-  color: #D65353;
+  color: #d65353;
   display: block;
   margin: auto;
   background: none;
@@ -426,7 +425,7 @@ main .fa-pen-to-square {
 
 .fa-image {
   font-size: 3rem;
-  color: #B9C5CC;
+  color: #b9c5cc;
 }
 
 #arrow {
