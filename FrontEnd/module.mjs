@@ -21,8 +21,7 @@ export let mainFunctions = {
       figure.appendChild(figcaption);
       img.src = array[i].imageUrl;
       figcaption.innerText = array[i].title;
-      console.log(array);
-      
+      figure.setAttribute("data-id", array[i].id);
     }
   },
   filter: (array) => {
@@ -30,9 +29,7 @@ export let mainFunctions = {
     let gallery = document.querySelector(".portfolio__gallery");
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        let newArray = array.filter(
-          (item) => item.categoryId == button.dataset.id
-        );
+        let newArray = array.filter((item) => item.categoryId == button.dataset.id);
         if (newArray.length !== array.length) {
           gallery.innerHTML = "";
           buttons.forEach((btn) => btn.classList.remove("btn--active"));
@@ -80,6 +77,7 @@ export let sideFunctions = {
       figcaption.appendChild(document.createTextNode(`éditer`));
       figcaption.appendChild(icone);
       img.src = array[i].imageUrl;
+      figure.setAttribute("data-id", array[i].id);
       icone.setAttribute("data-id", array[i].id);
       icone.classList.add("fa-solid", "fa-trash-can");
     }
@@ -105,9 +103,10 @@ export let sideFunctions = {
         myModalBg.classList.toggle("myModal__hidden");
       })
     );
-    myModalBg.addEventListener('click', (e)=> {
-     myModal.classList.toggle("hide")
-    e.target.classList.toggle('myModal__hidden')})
+    myModalBg.addEventListener("click", (e) => {
+      myModal.classList.toggle("hide");
+      e.target.classList.toggle("myModal__hidden");
+    });
 
     myModalCloseBtn.addEventListener("click", () => {
       myModal.classList.toggle("hide");
@@ -116,9 +115,7 @@ export let sideFunctions = {
     inputFile.addEventListener("change", function (e) {
       let img = e.target.files[0];
       let imgPrev = URL.createObjectURL(img);
-      let placeholderTitle = img.name
-        .substring(0, img.name.lastIndexOf("."))
-        .replace(/-/g, " ");
+      let placeholderTitle = img.name.substring(0, img.name.lastIndexOf(".")).replace(/-/g, " ");
       inputText.value = placeholderTitle;
       placeholderImg.classList.remove("hide");
       placeholderImg.src = imgPrev;
@@ -126,23 +123,28 @@ export let sideFunctions = {
     myModalDelete.addEventListener("click", (e) => {
       e.preventDefault();
       for (let i = 0; i < trash.length; i++) {
+        let modalFigure = document.querySelectorAll(`.myModal figure`);
+        let introFigure = document.querySelectorAll(`.portfolio__gallery figure`);
+        let toDelete = [...modalFigure ,...introFigure];
+        console.log(toDelete);
+        
+        toDelete.forEach(element => element.classList.add("erased"));
         sideFunctions.deleteWork(works[i].id);
       }
     });
     trash.forEach((ben) => {
-      ben.addEventListener("click", (e) => {
+      ben.addEventListener("click", async (e) => {
         e.preventDefault();
         let id = e.target.dataset.id;
+        let toDelete = document.querySelectorAll(`[data-id="${id}"]`);
+        toDelete.forEach((element) => element.classList.add("erased"));
         sideFunctions.deleteWork(id);
       });
     });
   },
   modalSwitch: (categories) => {
     let myModalCloseBtn = document.querySelector(".myModal__cross");
-    let modals = [
-      document.querySelector(".myModal__first"),
-      document.querySelector(".myModal__second"),
-    ];
+    let modals = [document.querySelector(".myModal__first"), document.querySelector(".myModal__second")];
     let myModalAdd = document.querySelector(".myModal__add");
     let arrow = document.getElementById("arrow");
     let form = document.querySelector(".myModal form");
@@ -156,35 +158,52 @@ export let sideFunctions = {
     });
     myModalCloseBtn.addEventListener("click", () => {
       arrow.setAttribute("id", "arrow");
-      document
-        .querySelector(".myModal__first")
-        .classList.remove("myModal__hidden");
-      document
-        .querySelector(".myModal__second")
-        .classList.add("myModal__hidden");
+      document.querySelector(".myModal__first").classList.remove("myModal__hidden");
+      document.querySelector(".myModal__second").classList.add("myModal__hidden");
     });
     arrow.addEventListener("click", () => {
       modals.forEach((element) => element.classList.toggle("myModal__hidden"));
       arrow.setAttribute("id", "arrow");
-    }),
-    form.addEventListener("submit", function (e) {
-      e.preventDefault()
-      sideFunctions.addWorks();
-      });
+    });
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault(); // a enlever ? //
+      let addGallery = (gallery) => {
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+        const figcaption = document.createElement("figcaption");
+        gallery.appendChild(figure);
+        figure.appendChild(img);
+        figure.appendChild(figcaption);
+        img.src = promise.imageUrl;
+        figcaption.innerText = promise.title;
+        figure.setAttribute("data-id", promise.id);
+      };
+      let promise = await sideFunctions.addWorks();
+      const mainGallery = document.querySelector(".portfolio__gallery");
+      const myModalGallery = document.querySelector(".myModal__gallery");
+      if (promise.id) {
+        console.log(promise.id);
+
+        addGallery(mainGallery);
+        addGallery(myModalGallery);
+      }
+    });
   },
-  addWorks: () => {
+  addWorks: async () => {
     let form = document.querySelector(".myModal form");
     let formData = new FormData(form);
     let token = sessionStorage.getItem("token");
-    fetch(`http://localhost:5678/api/works/`, {
+    let response = await fetch(`http://localhost:5678/api/works/`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
       body: formData,
     });
+    let test = await response.json();
+    return test;
   },
-  deleteWork: (id) => {
+  deleteWork: async (id) => {
     let token = sessionStorage.getItem("token");
     fetch(`http://localhost:5678/api/works/${id}`, {
       method: "delete",
@@ -225,7 +244,7 @@ export let logFunctions = {
       e.preventDefault();
       let promise = await logFunctions.getPromise();
       console.log(promise);
-      
+
       if ("userId" in promise) {
         sessionStorage.setItem("token", promise.token);
         window.location.href = indexUrl;

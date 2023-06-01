@@ -55,13 +55,12 @@ header {
 
     li {
       padding: 0 10px;
-      font-size: 1.2em;
-    }
-
+      font-size: 1.2em; 
     &:hover {
       color: #b1663c;
     }
   }
+}
 
   a {
     text-decoration: none;
@@ -483,6 +482,6 @@ main .fa-pen-to-square {
 
 .hidden,
 .hide,
-.myModal__hidden {
+.myModal__hidden, .erased {
   display: none;
 }
