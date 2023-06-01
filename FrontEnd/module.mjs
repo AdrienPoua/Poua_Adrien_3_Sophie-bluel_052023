@@ -42,14 +42,18 @@ export let mainFunctions = {
   adminMode: async () => {
     let token = sessionStorage.getItem("token");
     if (token != null) {
-      let response = await fetch(`http://localhost:5678/api/works`);
-      let works = await response.json();
-      response = await fetch(`http://localhost:5678/api/categories`);
-      let categories = await response.json();
-      sideFunctions.visibility();
-      sideFunctions.makeModalGallery(works);
-      sideFunctions.adminListener(works);
-      sideFunctions.modalSwitch(categories);
+      try {
+        let response = await fetch(`http://localhost:5678/api/works`);
+        let works = await response.json();
+        response = await fetch(`http://localhost:5678/api/categories`);
+        let categories = await response.json();
+        sideFunctions.visibility();
+        sideFunctions.makeModalGallery(works);
+        sideFunctions.adminListener(works);
+        sideFunctions.modalSwitch(categories);
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
 };
@@ -125,10 +129,8 @@ export let sideFunctions = {
       for (let i = 0; i < trash.length; i++) {
         let modalFigure = document.querySelectorAll(`.myModal figure`);
         let introFigure = document.querySelectorAll(`.portfolio__gallery figure`);
-        let toDelete = [...modalFigure ,...introFigure];
-        console.log(toDelete);
-        
-        toDelete.forEach(element => element.classList.add("erased"));
+        let toDelete = [...modalFigure, ...introFigure];
+        toDelete.forEach((element) => element.classList.add("erased"));
         sideFunctions.deleteWork(works[i].id);
       }
     });
@@ -137,6 +139,7 @@ export let sideFunctions = {
         e.preventDefault();
         let id = e.target.dataset.id;
         let toDelete = document.querySelectorAll(`[data-id="${id}"]`);
+
         toDelete.forEach((element) => element.classList.add("erased"));
         sideFunctions.deleteWork(id);
       });
@@ -166,7 +169,7 @@ export let sideFunctions = {
       arrow.setAttribute("id", "arrow");
     });
     form.addEventListener("submit", async function (e) {
-      e.preventDefault(); // a enlever ? //
+      e.preventDefault();
       let addGallery = (gallery) => {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
@@ -182,8 +185,6 @@ export let sideFunctions = {
       const mainGallery = document.querySelector(".portfolio__gallery");
       const myModalGallery = document.querySelector(".myModal__gallery");
       if (promise.id) {
-        console.log(promise.id);
-
         addGallery(mainGallery);
         addGallery(myModalGallery);
       }
@@ -193,25 +194,33 @@ export let sideFunctions = {
     let form = document.querySelector(".myModal form");
     let formData = new FormData(form);
     let token = sessionStorage.getItem("token");
-    let response = await fetch(`http://localhost:5678/api/works/`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
-    let test = await response.json();
-    return test;
+    try {
+      let response = await fetch(`http://localhost:5678/api/works/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+      let test = await response.json();
+      return test;
+    } catch (error) {
+      console.log(error);
+    }
   },
   deleteWork: async (id) => {
     let token = sessionStorage.getItem("token");
-    fetch(`http://localhost:5678/api/works/${id}`, {
-      method: "delete",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    try {
+      fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 export let logFunctions = {
@@ -243,8 +252,6 @@ export let logFunctions = {
     log.addEventListener("submit", async (e) => {
       e.preventDefault();
       let promise = await logFunctions.getPromise();
-      console.log(promise);
-
       if ("userId" in promise) {
         sessionStorage.setItem("token", promise.token);
         window.location.href = indexUrl;
