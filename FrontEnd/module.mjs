@@ -22,6 +22,7 @@ export let mainFunctions = {
       img.src = array[i].imageUrl;
       figcaption.innerText = array[i].title;
       figure.setAttribute("data-id", array[i].id);
+      img.setAttribute("alt", array[i].title);
     }
   },
   filter: (array) => {
@@ -82,6 +83,7 @@ export let sideFunctions = {
       figcaption.appendChild(icone);
       img.src = array[i].imageUrl;
       figure.setAttribute("data-id", array[i].id);
+      img.setAttribute("alt", array[i].title);
       icone.setAttribute("data-id", array[i].id);
       icone.classList.add("fa-solid", "fa-trash-can");
     }
