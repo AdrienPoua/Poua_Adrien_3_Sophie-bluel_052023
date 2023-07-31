@@ -1,0 +1,390 @@
+@import "./utils/resets";
+@import "./utils/mixins";
+@import "./utils/variables";
+@import "./utils/functions";
+
+html {
+  background: #e5e5e5;
+  height: 100%;
+}
+body {
+  @include fonts(primary, 14px, null);
+  max-width: 1140px;
+  margin: auto;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  nav {
+    display: flex;
+    ul {
+      @include flex-center-vert;
+    }
+    li {
+      color: inherit;
+      padding: 0 10px;
+      font-size: 1.2em;
+      &:hover {
+        color: #b1663c;
+      }
+      a:hover {
+        color: #b1663c;
+      }
+    }
+  }
+  a {
+    text-align: center;
+    font-weight: 500;
+    color: black;
+  }
+
+  &.admin {
+    margin-top: 6rem;
+  }
+}
+footer {
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    margin: 2em;
+  }
+}
+section {
+  margin: 50px 0;
+}
+figure {
+  @include flex-column;
+  z-index: z-index("site");
+  position: relative;
+  flex: 1;
+}
+article {
+  flex: 1;
+}
+h1 {
+  @include flex-column;
+  @include fonts(secondary, 22px, 800, third);
+  span {
+    @include fonts(primary, 10px);
+    letter-spacing: 0.1em;
+  }
+}
+h2 {
+  @include fonts(secondary, 30px, 700, primary);
+  margin-right: 10px;
+}
+.adminbar {
+  @include flex-center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  color: white;
+  background-color: black;
+  gap: 15px;
+  padding-block: 0.5rem;
+  p {
+    margin-block: auto;
+  }
+}
+.introduction {
+  @include flex-center-vert;
+  gap: 4em;
+}
+.portfolio {
+  .modif__item {
+    margin-left: 1rem;
+    cursor: pointer;
+  }
+  &__title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+  }
+  &__gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+.filter__wrapper {
+  @include flex-center;
+  margin-bottom: 50px;
+  gap: 1em;
+}
+.contact {
+  margin: auto;
+  text-align: center;
+}
+.form {
+  @include flex-column;
+  text-align: left;
+  width: 40%;
+  margin: auto;
+  & > input {
+    flex: 1;
+    padding: 1em;
+  }
+  label {
+    margin: 2em 0 1em 0;
+    color: #3d3d3d;
+  }
+  input {
+    text-align: center;
+    height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  }
+  textarea {
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  }
+}
+.auth__wrapper {
+  @include flex-center-column;
+  label {
+    font-weight: 500;
+  }
+  button {
+    font-weight: 700;
+  }
+  .forgot-password-link {
+    color: #3d3d3d;
+    font-weight: 500;
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .auth-error {
+    @include flex-center-horiz;
+    color: red;
+    margin-top: 2rem;
+    &.hidden {
+      display: none;
+    }
+  }
+}
+.btn {
+  @include fonts($weight: bold, $color: primary);
+  border: solid 1px map-get($colors, primary);
+  text-align: center;
+  padding: 9px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.btn--secondary {
+  @include fonts($color: white, $size: 14px);
+  width: 180px;
+  background-color: map-get($colors, primary);
+  align-self: center;
+  margin-top: 2.5em;
+}
+.btn--active {
+  background: map-get($colors, primary);
+  color: white;
+}
+.file__btn {
+  width: 50%;
+  background-color: #cbd6dc;
+  color: #306685;
+  border: none;
+  margin-block: 1rem;
+}
+.btn-modifier {
+  @include flex-center-vert;
+  display: inline-;
+  gap: 1em;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+.btn-delete {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+}
+.mentions {
+  list-style: none;
+  padding-bottom: 1rem;
+}
+
+//////// ADMIN MODE ///////
+
+.modal {
+  @include flex-column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  overflow: auto;
+  height: 95svh;
+  z-index: z-index("modal");
+  padding: 2% 3.5%;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  &.hidden {
+    display: none;
+  }
+  .modal__wrapper {
+    @include flex-column;
+    &:first-child {
+      .btn__wrapper {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    &:nth-child(2) {
+      .btn__wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .modal__content{
+    .form {
+      width: 100%;
+    }
+  }
+  &__footer {
+    @include flex-column;
+    gap: 1em;
+  }
+  &__title {
+    font-size: 26px;
+    color: black;
+    margin-top: 1rem;
+    text-align: center;
+    font-family: work-sans;
+    margin-bottom: 1em;
+  }
+  &__gallery {
+    display: grid;
+    gap: 1rem;
+    padding-block: 2rem;
+    border-bottom: solid 2px #b3b3b3;
+    margin-bottom: 2em;
+    grid:auto / repeat(5, 1fr);
+
+    figcaption {
+      @include fonts(primary, 12px, null);
+      margin-top: 5px;
+      cursor: pointer;
+    }
+    .fa-trash-can {
+      @include pseudo;
+      color: white;
+      top: 0;
+      right: 0;
+      background: black;
+      padding: 5px;
+      border-radius: 5px;
+      top: 10px;
+      right: 10px;
+    }
+  }
+  .back-btn {
+    cursor: pointer;
+    font-size: 2rem;
+    justify-self: start;
+  }
+  .close-btn {
+    cursor: pointer;
+    font-size: 2rem;
+    grid-column: 2;
+    justify-self: end;
+  }
+
+
+  & .custom-file-input {
+    @include flex-center-column;
+    padding-block: 2em;
+    position: relative;
+    background-color: #e8f1f6;
+    cursor: pointer;
+    input[type="file"] {
+      position: absolute;
+      top : 0;
+      bottom: 0;
+      left : 0;
+      right : 0;
+      opacity: 0;
+      height : 100%;
+      cursor: pointer;
+    }
+    .btn--file {
+      color:#306685;
+      background-color:#cbd6dc;
+      border : none;
+    }
+    .fa-image {
+      font-size: 5em;
+    }
+  }
+}
+
+span {
+  text-align: center;
+}
+
+.preview {
+  position: absolute;
+  top: 0;
+  bottom : 0;
+  left: 25%;
+  width: 50%;
+}
+input[type="text"],
+select {
+  text-align: left;
+  padding: 1rem;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.validation__wrapper {
+  display: flex;
+  padding-top: 2rem;
+  margin-top: 3rem;
+  border-top: solid 1px red;
+}
+
+input[type="submit"] {
+  margin: auto;
+  padding-inline: 20%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: z-index("overlay");
+}
+
+.fa-pen-to-square {
+  width: 15px;
+  height: 15px;
+  color: white;
+}
+
+main .fa-pen-to-square {
+  color: black;
+}
+.fa-image {
+  font-size: 3rem;
+  color: #b9c5cc;
+}
+
+.hidden {
+  display: none;
+}

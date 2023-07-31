@@ -1,56 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-		rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
-</head>
-
-<body>
+  <body>
     <header>
-        <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-        <nav>
-            <ul>
-				<a href="./index.html">
-					<li>projets</li>
-				</a>
-				<li>contact</li>
-				<a href="./log.html">
-					<li>login</li>
-				</a>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-			</ul>
-        </nav>
+      <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+      <nav>
+        <ul>
+          <a href="./index.html">
+            <li>projets</li>
+          </a>
+          <li>contact</li>
+          <a href="./log.html">
+            <li>login</li>
+          </a>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
     </header>
     <main>
-        <div class="log">
-            <h2>log in</h2>
-            <form action="">
-                <label for="email" id="email">E-mail</label>
-                <input type="email" name="email" id="input__email">
-                <label for="mot de passe" id="password"> Mot de passe</label>
-                <input type="password" name="password" id="input__password">
-                <span class="log__error hidden"> Identifiants incorrects. Veuillez réessayer.</span>
-                <button class="btn btn--form">Se connecter</button>
-                <a href="" class="mdp"> Mot de passe oublié ?</a>
-        </div>
+      <div class="auth__wrapper">
+        <h2>log in</h2>
+        <form class="form auth__form" action="">
+          <label for="email" id="email">E-mail</label>
+          <input type="email" name="email" id="input__email" />
+          <label for="mot de passe" id="password"> Mot de passe</label>
+          <input type="password" name="password" id="input__password" />
+          <span class="auth-error hidden"> Identifiants incorrects. Veuillez réessayer.</span>
+          <button class="btn btn--secondary">Se connecter</button>
+          <a href="" class="forgot-password-link"> Mot de passe oublié ?</a>
         </form>
-        <footer>
-            <nav>
-                <ul>
-                    <li class="mentions">Mentions Légales</li>
-                </ul>
-            </nav>
-        </footer>
+      </div>
+      <footer>
+        <nav>
+          <ul>
+            <li class="mentions">Mentions Légales</li>
+          </ul>
+        </nav>
+      </footer>
     </main>
-    <script type='module' src="./log.js"></script>
-</body>
-
+    <script type="module" src="./log.js"></script>
+  </body>
 </html>
