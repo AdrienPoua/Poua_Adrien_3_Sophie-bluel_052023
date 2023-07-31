@@ -73,16 +73,16 @@
               <h2 class="modal__title">Ajout photos</h2>
             </div>
             <div class="modal__content">
-              <form class="form" ="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
+              <form class="form" action="http://localhost:5678/api/works" method="post" enctype="multipart/form-data">
                 <div class="custom-file-input">
-                  <img class="preview hidden" src="#" />
+                  <img class="preview hidden" src="#" alt="preview de l'image en cours de telechargement"/>
                   <i class="fa-regular fa-image"></i>
                   <input type="file" id="file-input" name="image" accept="image/*" required />
                   <label for="file-input" class="btn btn--file"> + Ajouter une photo </label>
                   <span> jpg, png : 4mo max </span>
                 </div>
                 <label for="inputTitle">Titre:</label>
-                <input type="text" id="inputTitle" name="title" accept="image/*" required />
+                <input type="text" id="inputTitle" name="title" required />
                 <label for="options">Catégorie</label>
                 <select id="options" name="category">
                   <option value="1">#</option>

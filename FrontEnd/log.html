@@ -16,13 +16,9 @@
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
         <ul>
-          <a href="./index.html">
-            <li>projets</li>
-          </a>
+          <li><a href="./index.html">projets</a></li>
           <li>contact</li>
-          <a href="./log.html">
-            <li>login</li>
-          </a>
+          <li><a href="./log.html">login</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -30,10 +26,10 @@
     <main>
       <div class="auth__wrapper">
         <h2>log in</h2>
-        <form class="form auth__form" action="">
-          <label for="email" id="email">E-mail</label>
+        <form class="form auth__form" action="get">
+          <label for="input__email" id="email">E-mail</label>
           <input type="email" name="email" id="input__email" />
-          <label for="mot de passe" id="password"> Mot de passe</label>
+          <label for="input__password" id="password"> Mot de passe</label>
           <input type="password" name="password" id="input__password" />
           <span class="auth-error hidden"> Identifiants incorrects. Veuillez réessayer.</span>
           <button class="btn btn--secondary">Se connecter</button>
